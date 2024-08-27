@@ -108,7 +108,7 @@
         paragraph.innerText = newParagraph;
       };
 
-      changePcontent("Modifico i paragrafi contenuti dentro al primo div");
+      changePcontent("Modifico i paragrafi contenuti dentro al primo div (esercizio 3)");
 
       /* ESERCIZIO 4
          Scrivi una funzione che cambi la proprietà href di ogni link (tranne quello nel footer) con il valore https://www.google.com
@@ -132,7 +132,8 @@
 
       const addToTheSecond = function () {
         const secondList = document.getElementById("secondList");
-        secondList.innerHTML += "<li>4th</li>";
+        // const secondList = document.querySelector("ul:not(:nth-child(2))"); // se l'elemento nella pagina non avesse avuto un id, avrei potuto selezionarlo in questo modo
+        secondList.innerHTML += "<li>4th (esercizio 5)</li>";
       };
 
       addToTheSecond();
@@ -148,7 +149,7 @@
         firstDiv.appendChild(newParagraph);
       };
 
-      addParagraph(); // se inserisco una stringa come parametro, verrà inserita la mia stringa
+      addParagraph("Nuovo paragrafo (esercizio 6)"); // se inserisco una stringa come parametro, verrà inserita la mia stringa
 
       /* ESERCIZIO 7
          Scrivi una funzione che faccia scomparire la prima lista non ordinata
@@ -211,17 +212,14 @@
 
       const generateTable = function (head1 = "Image", head2 = "Product name", head3 = "Quantity", head4 = "Price") {
         const tableTag = document.createElement("table");
-        const trTag = document.createElement("tr");
+        const trHead = document.createElement("tr");
         let trHeadings = "";
         for (let i = 1; i <= 4; i++) {
           let dynamicHeading = eval("head" + i);
           trHeadings += `<td>${dynamicHeading}</td>`;
         }
-        trTag.innerHTML = `<td> ${head1} </td><td> ${head2} </td><td> ${head3} </td><td> ${head4} </td>`;
-        document.getElementById("tableArea").appendChild(tableTag).appendChild(trTag);
-        for (let i = 0; i <= 4; i++) {
-          document.createElement("td");
-        }
+        trHead.innerHTML = `<td> ${head1} </td><td> ${head2} </td><td> ${head3} </td><td> ${head4} </td>`;
+        document.getElementById("tableArea").appendChild(tableTag).appendChild(trHead);
       };
 
       generateTable();
