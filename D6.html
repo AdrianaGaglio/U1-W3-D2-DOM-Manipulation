@@ -155,7 +155,7 @@
 
       const hideFirstUl = function () {
         // document.querySelector("ul"); // selezionando per tag con css selector, querySelector restituisce il nodo alla prima occorrenza risultante
-        // document.getElementById("firstList").remove(); // in questo caso specifico in questa pagina posso selezionare per id
+        document.getElementById("firstList").remove(); // in questo caso specifico in questa pagina posso selezionare per id
       };
 
       hideFirstUl();
@@ -167,7 +167,7 @@
       const paintItGreen = function () {
         const lists = document.getElementsByTagName("ul");
         for (let i = 0; i < lists.length; i++) {
-          console.log(lists[i]);
+          lists[i].style.backgroundColor = "green";
         }
       };
 
@@ -177,20 +177,51 @@
          Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
         */
 
-      const makeItClickable = function () {};
+      const makeItClickable = function () {
+        const characters = Array.from(document.querySelector("h1").innerText);
+        const pageTitle = document.querySelector("h1");
+        pageTitle.onclick = () => {
+          characters.pop();
+          pageTitle.innerText = characters.join("");
+        };
+      };
+
+      makeItClickable();
 
       /* ESERCIZIO 10
          Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
         */
 
-      const revealFooterLink = function () {};
+      const revealFooterLink = function () {
+        const footerLink = document.querySelector("footer a");
+        document.querySelector("footer").onclick = () => {
+          alert(footerLink.href);
+        };
+      };
+
+      revealFooterLink();
 
       /* ESERCIZIO 11
          Crea una funzione che crei una tabella nell'elemento con id "tableArea".
          La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
       */
 
-      const generateTable = function () {};
+      const generateTable = function (head1 = "Image", head2 = "Product name", head3 = "Quantity", head4 = "Price") {
+        const tableTag = document.createElement("table");
+        const trTag = document.createElement("tr");
+        let trHeadings = "";
+        for (let i = 1; i <= 4; i++) {
+          let dynamicHeading = eval("head" + i);
+          trHeadings += `<td>${dynamicHeading}</td>`;
+        }
+        trTag.innerHTML = `<td> ${head1} </td><td> ${head2} </td><td> ${head3} </td><td> ${head4} </td>`;
+        document.getElementById("tableArea").appendChild(tableTag).appendChild(trTag);
+        for (let i = 0; i <= 4; i++) {
+          document.createElement("td");
+        }
+      };
+
+      generateTable();
 
       /* ESERCIZIO 12
          Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
