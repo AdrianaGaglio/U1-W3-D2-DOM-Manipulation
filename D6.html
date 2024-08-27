@@ -117,10 +117,11 @@
       const changeUrls = function (url = "https://www.google.com") {
         // permette sia l'inserimento dell'url di default che una inserita come parametro
         const mainLinks = document.querySelectorAll("a:not(footer a)");
-        for (let i = 0; i < mainLinks.length; i++) {
-          // in questa pagina il corpo contiene solo un link, ma questo for selezionerebbe tutti i link eccetto che nel footer nel caso in cui ci fossero più tag <a> all'interno alla pagina
-          mainLinks[i].href = url;
-        }
+        mainLinks.forEach((link) => (link.href = url));
+        // for (let i = 0; i < mainLinks.length; i++) {
+        //   // in questa pagina il corpo contiene solo un link, ma questo for selezionerebbe tutti i link eccetto che nel footer nel caso in cui ci fossero più tag <a> all'interno alla pagina
+
+        // }
       };
 
       changeUrls();
