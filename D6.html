@@ -198,7 +198,8 @@
 
       const revealFooterLink = function () {
         const footerLink = document.querySelector("footer a");
-        document.querySelector("footer").onclick = () => {
+        const footer = document.querySelector("footer");
+        footer.onclick = () => {
           alert(footerLink.href);
         };
       };
