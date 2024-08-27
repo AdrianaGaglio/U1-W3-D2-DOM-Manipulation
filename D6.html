@@ -166,10 +166,12 @@
         */
 
       const paintItGreen = function () {
-        const lists = document.getElementsByTagName("ul");
-        for (let i = 0; i < lists.length; i++) {
-          lists[i].style.backgroundColor = "green";
-        }
+        // const lists = document.getElementsByTagName("ul"); // con questo elemento devo usare ciclo for, almeno che non lo trasformo in un array da ciclare con .forEach()
+        const lists = document.querySelectorAll("ul"); // mi genera un elemento sul quale posso usare .forEach()
+        lists.forEach((ul) => (ul.style.backgroundColor = "green"));
+        // for (let i = 0; i < lists.length; i++) {
+        //   lists[i].style.backgroundColor = "green";
+        // }
       };
 
       paintItGreen();
