@@ -211,16 +211,45 @@
          La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
       */
 
+      const items = [
+        { image: "https://picsum.photos/200/300?=q1", prodName: "T-Shirt", quantity: 1, price: 20 },
+        { image: "https://picsum.photos/200/300?=q2", prodName: "Hat", quantity: 2, price: 12 },
+        { image: "https://picsum.photos/200/300?=q3", prodName: "Shoes", quantity: 1, price: 70 },
+        { image: "https://picsum.photos/200/300?=q4", prodName: "Shorts", quantity: 3, price: 25 },
+        { image: "https://picsum.photos/200/300?=q5", prodName: "Shirt", quantity: 1, price: 35 }
+      ];
+
       const generateTable = function (head1 = "Image", head2 = "Product name", head3 = "Quantity", head4 = "Price") {
         const tableTag = document.createElement("table");
         const trHead = document.createElement("tr");
         let trHeadings = "";
         for (let i = 1; i <= 4; i++) {
           let dynamicHeading = eval("head" + i);
-          trHeadings += `<td>${dynamicHeading}</td>`;
+          trHeadings = document.createElement("td");
+          trHeadings.style = "font-weight:700;padding:1em";
+          trHeadings.innerHTML = dynamicHeading;
+          trHead.appendChild(trHeadings);
         }
-        trHead.innerHTML = `<td> ${head1} </td><td> ${head2} </td><td> ${head3} </td><td> ${head4} </td>`;
         document.getElementById("tableArea").appendChild(tableTag).appendChild(trHead);
+        tableTag.style = "border-collapse:collapse";
+        for (let i = 0; i < items.length; i++) {
+          const trItem = document.createElement("tr");
+          const itemImage = document.createElement("td");
+          itemImage.style = "border:1px solid black;text-align:center;";
+          itemImage.innerHTML = `<img src="${items[i].image}"/>`;
+          const itemName = document.createElement("td");
+          itemName.style = "border:1px solid black;padding:1em;";
+          itemName.innerHTML = items[i].prodName;
+          const itemQty = document.createElement("td");
+          itemQty.style = "padding:1rem;border:1px solid black";
+          itemQty.innerHTML = items[i].quantity;
+          const itemPrice = document.createElement("td");
+          itemPrice.style = "padding:1rem;border:1px solid black";
+          itemPrice.innerHTML = items[i].price;
+          trItem.append(itemImage, itemName, itemQty, itemPrice);
+          tableTag.appendChild(trItem);
+          document.querySelectorAll("table img")[i].style = "vertical-align:middle;height:100px;object-fit:cover;";
+        }
       };
 
       generateTable();
