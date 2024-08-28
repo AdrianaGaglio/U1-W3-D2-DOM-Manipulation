@@ -237,6 +237,7 @@
           const itemImage = document.createElement("td");
           itemImage.style = "border:1px solid black;text-align:center;";
           itemImage.innerHTML = `<img src="${items[i].image}"/>`;
+          itemImage.firstChild.style = "vertical-align:middle;height:100px;object-fit:cover;";
           const itemName = document.createElement("td");
           itemName.style = "border:1px solid black;padding:1em;";
           itemName.innerHTML = items[i].prodName;
@@ -248,7 +249,6 @@
           itemPrice.innerHTML = items[i].price;
           trItem.append(itemImage, itemName, itemQty, itemPrice);
           tableTag.appendChild(trItem);
-          document.querySelectorAll("table img")[i].style = "vertical-align:middle;height:100px;object-fit:cover;";
         }
       };
 
@@ -258,7 +258,28 @@
          Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
       */
 
-      const addRow = function () {};
+      const addRow = function (item) {
+        const tableTag = document.querySelector("#tableArea table");
+        const trItem = document.createElement("tr");
+        const itemImage = document.createElement("td");
+        itemImage.style = "border:1px solid black;text-align:center;";
+        itemImage.innerHTML = `<img src="${item.image}"/>`;
+        itemImage.firstChild.style = "vertical-align:middle;height:100px;object-fit:cover;";
+        const itemName = document.createElement("td");
+        itemName.style = "border:1px solid black;padding:1em;";
+        itemName.innerHTML = item.prodName;
+        const itemQty = document.createElement("td");
+        itemQty.style = "padding:1rem;border:1px solid black";
+        itemQty.innerHTML = item.qty;
+        const itemPrice = document.createElement("td");
+        itemPrice.style = "padding:1rem;border:1px solid black";
+        itemPrice.innerHTML = item.price;
+        trItem.append(itemImage, itemName, itemQty, itemPrice);
+        tableTag.appendChild(trItem);
+      };
+
+      addRow({ image: "https://picsum.photos/200/300", prodName: "newItem", qty: 1, price: 10 });
+      addRow({ image: "https://picsum.photos/200/300?q=6", prodName: "newItem2", qty: 2, price: 15 });
 
       /* ESERCIZIO 14
         Crea una funzione che nasconda le immagini della tabella quando eseguita
